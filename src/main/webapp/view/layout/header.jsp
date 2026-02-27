@@ -30,7 +30,7 @@
         %>
         <div class="profile-wrap">
             <span style="font-size:14px; font-weight:600; color:var(--ink);"><%=userData.getName()%></span>
-            <a href="profile.html" class="btn btn-outline btn-sm">Profile</a>
+            <a href="/profile" class="btn btn-outline btn-sm">Profile</a>
             <a href="/login?action=logout" class="btn btn-sm"
                style="color:var(--danger); border:1.5px solid #fecaca; background:transparent;">Sign Out</a>
         </div>

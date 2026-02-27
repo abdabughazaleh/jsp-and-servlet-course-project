@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.dto.UserDTO;
+import service.SessionService;
 
 import java.io.IOException;
 
@@ -13,6 +15,13 @@ import java.io.IOException;
 public class ProfileController  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        SessionService service = new SessionService(req);
+        if (!service.validateUserAccess()) {
+            resp.sendRedirect("/login?err=access_denied");
+            return;
+        }
+        UserDTO userDTO = service.getCurrentUser();
+        req.setAttribute("user_data" , userDTO);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/view/profile.jsp");
         dispatcher.forward(req, resp);
     }

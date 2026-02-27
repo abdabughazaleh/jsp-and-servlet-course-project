@@ -41,7 +41,7 @@ public class NotesController extends HttpServlet {
             NoteDTO noteDTO = dao.getNoteByCode(noteCode);
             req.setAttribute("note_dto", noteDTO);
         }
-        List<NoteDTO> notes = dao.getUserNotesByUserId(service.getCurrentUser().getId());
+        List<NoteDTO> notes = dao.getUserNotesByUserId(service.getCurrentUser().getId(), null);
         req.setAttribute("notes", notes);
 
 

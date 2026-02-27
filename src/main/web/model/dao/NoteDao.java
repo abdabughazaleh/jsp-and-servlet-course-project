@@ -48,8 +48,15 @@ public class NoteDao {
         return null;
     }
 
-    public List<NoteDTO> getUserNotesByUserId(int userId) {
-        ResultSet rs = DBOperations.executeQuery("select * from user_notes where user_id = '" + userId + "'");
+    public List<NoteDTO> getUserNotesByUserId(int userId, Integer limit) {
+        String query;
+        if (limit == null) {
+            query = "select * from user_notes where user_id = '" + userId + "'";
+        } else {
+            query = "select * from user_notes where user_id = '" + userId + "' limit " + limit;
+        }
+
+        ResultSet rs = DBOperations.executeQuery(query);
         List<NoteDTO> dtoList = new ArrayList<>();
         try {
             while (rs.next()) {

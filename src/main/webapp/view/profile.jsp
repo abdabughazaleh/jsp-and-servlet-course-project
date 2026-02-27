@@ -1,3 +1,4 @@
+<%@ page import="model.dto.UserDTO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,9 @@
 
 <!-- ═══ MAIN ═══ -->
 <main>
-
+    <%
+        UserDTO user = (UserDTO) session.getAttribute("user_data");
+    %>
     <div style="text-align:center; margin-bottom:44px;" class="anim">
         <div class="kicker">Account</div>
         <h1 style="font-family:'Fraunces',serif; font-size:40px; font-weight:900; letter-spacing:-1px;">Your Profile</h1>
@@ -25,8 +28,8 @@
         <div class="profile-avatar-lg">AR</div>
 
         <!-- Replace placeholder text with server-side user values -->
-        <h2>Ahmed Al-Rashidi</h2>
-        <div class="profile-role">Java Developer · Member since 2026</div>
+        <h2><%= user.getName() %></h2>
+        <div class="profile-role"><%= user.getMobileNo() %></div>
 
         <div class="profile-detail">
             <div class="detail-icon">
@@ -34,7 +37,7 @@
             </div>
             <div>
                 <span class="detail-label">Full Name</span>
-                <span class="detail-value">Ahmed Al-Rashidi</span>
+                <span class="detail-value"><%= user.getName() %></span>
             </div>
         </div>
 
@@ -44,7 +47,7 @@
             </div>
             <div>
                 <span class="detail-label">Email Address</span>
-                <span class="detail-value">ahmed@example.com</span>
+                <span class="detail-value"><%= user.getEmail() %></span>
             </div>
         </div>
 
@@ -54,7 +57,7 @@
             </div>
             <div>
                 <span class="detail-label">Mobile Number</span>
-                <span class="detail-value">+966 5x xxx xxxx</span>
+                <span class="detail-value"><%= user.getMobileNo() %></span>
             </div>
         </div>
 
@@ -65,7 +68,7 @@
                 <div class="stat-lbl">Total Notes</div>
             </div>
             <div class="stat-box">
-                <div class="stat-num">2026</div>
+                <div class="stat-num"><%= user.getCreatedAt() %></div>
                 <div class="stat-lbl">Member Since</div>
             </div>
             <div class="stat-box">
@@ -75,8 +78,8 @@
         </div>
 
         <div style="margin-top:28px; padding-top:24px; border-top:1px solid var(--border); display:flex; gap:10px;">
-            <a href="notes.html" class="btn btn-outline btn-sm">My Notes</a>
-            <a href="/logout" class="btn btn-danger btn-sm">Sign Out</a>
+            <a href="/notes" class="btn btn-outline btn-sm">My Notes</a>
+            <a href="/login?action=logout" class="btn btn-danger btn-sm">Sign Out</a>
         </div>
 
     </div>
