@@ -69,6 +69,13 @@
             Something went wrong, check data...!
         </div>
         <%}%>
+        <%
+            if (status != null && status.equals("access_denied")) {
+        %>
+        <div class="error-message">
+            You cannot access to this page, please login and try again!
+        </div>
+        <%}%>
     </div>
 </div>
 
